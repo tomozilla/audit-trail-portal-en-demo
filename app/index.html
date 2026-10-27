@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support portal with an activity log (sample)</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #f6f7f8; color: #1c1c1c; }
+  [hidden] { display: none !important; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: #555; font-size: 14px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  h2 { font-size: 16px; margin: 0 0 8px; }
+  input, select { font-size: 14px; padding: 5px 7px; }
+  button { padding: 5px 10px; font-size: 14px; }
+  .row { display: flex; gap: 8px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+  .who { font-weight: 600; }
+  .msg { background: #fff4e5; border: 1px solid #f0c27b; padding: 8px 10px; border-radius: 6px; font-size: 13px; margin: 8px 0; }
+  .err { background: #fdecea; border-color: #e5a29b; }
+  .ok { background: #e8f5e9; border-color: #a5d6a7; }
+  ul { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+  li { padding: 6px 0; border-bottom: 1px solid #eee; }
+  .warn { color: #b3261e; font-size: 12px; display: block; }
+  .tot { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; font-size: 13px; }
+  .tot span { border: 1px solid #ddd; border-radius: 6px; padding: 2px 8px; background: #fff; }
+  .foot { font-size: 12px; color: #666; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Support portal with an activity log (sample)</h1>
+  <div class="sub">Each person signs in with their own login. Every change is written to a log that nobody can edit from the page.</div>
+  <div id="banner"></div>
+  <section class="card" id="login-card">
+    <h2>Sign in</h2>
+    <div class="row"><input id="email" type="email" placeholder="email" autocomplete="username"><input id="password" type="password" placeholder="password" autocomplete="current-password"><button id="signin">Sign in</button></div>
+    <div id="login-msg"></div>
+  </section>
+  <section class="card" id="who-card" hidden>
+    <div class="row"><span>Signed in as <span class="who" id="me"></span></span><button id="signout">Sign out</button></div>
+  </section>
+  <div class="grid" id="work" hidden>
+    <section class="card">
+      <h2>Requests</h2>
+      <div class="row"><input id="title" placeholder="New request title" style="flex:1"><button id="add">Add</button></div>
+      <div id="req-msg"></div>
+      <ul id="requests"></ul>
+    </section>
+    <section class="card">
+      <h2>Activity log</h2>
+      <div class="tot" id="summary"></div>
+      <ul id="log"></ul>
+    </section>
+  </div>
+  <div class="foot" id="foot"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="activity.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
